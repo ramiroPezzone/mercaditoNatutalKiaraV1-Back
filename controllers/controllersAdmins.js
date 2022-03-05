@@ -5,7 +5,7 @@ const controllerAdmins = {
     raiz: (req, res) => {
         res.send('raiz admins')
     },
-    crearAdmin: (req, res) => {
+    crearAdmin: async(req, res) => {
         const { nameAdmin, pass } = req.body
         await adminsDB.create({
             nameAdmin,
