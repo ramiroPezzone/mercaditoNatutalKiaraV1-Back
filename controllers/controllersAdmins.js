@@ -2,7 +2,8 @@ const productosDB = require('../models/productos')
 const adminsDB = require('../models/admins')
 
 const controllerAdmins = {
-    raiz: (req, res) => {
+    raiz: async(req, res) => {
+        await adminsDB.find()
         res.send('raiz admins')
     },
     crearAdmin: async(req, res) => {
