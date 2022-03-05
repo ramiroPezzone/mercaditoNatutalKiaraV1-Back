@@ -3,8 +3,8 @@ const adminsDB = require('../models/admins')
 
 const controllerAdmins = {
     raiz: async(req, res) => {
-        await adminsDB.find()
-        res.send('raiz admins')
+        const ad = await adminsDB.find()
+        res.send(ad)
     },
     crearAdmin: async(req, res) => {
         const { nameAdmin, pass } = req.body
