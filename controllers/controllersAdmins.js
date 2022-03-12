@@ -22,7 +22,6 @@ const controllerAdmins = {
     agregarProducto: async (req, res) => {
         const { name, description, quantity, price, unity, category } = req.body
         const image = req.file.filename;
-        console.log(image);
         await productosDB.create({
             name,
             description,
