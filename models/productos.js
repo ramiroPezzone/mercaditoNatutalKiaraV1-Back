@@ -7,7 +7,7 @@ const schemaProductos = mongoose.Schema({
     price: Number,
     image: String,
     unity: String,
-    category: String
+    categorys: Array
 })
 
 const modeloProductos = mongoose.model('Producto', schemaProductos)

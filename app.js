@@ -38,6 +38,8 @@ app.get('/', (req, res) => {
     res.send('API Mercadito Natural Kiara')
 })
 
+// Rutas admins
 app.use('/admins', rutasAdmins)
 
+// Rutas usuarios
 app.use('/usuarios', rutasUsuarios)
