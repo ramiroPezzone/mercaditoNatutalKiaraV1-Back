@@ -17,7 +17,7 @@ const controllerAdmins = {
         res.send('Nuevo administrador creado')
     },
     eliminarAdmin: async (req, res) => {
-        const id = req.params
+        const id = req.params.id
         await adminsDB.findByIdAndDelete(id)
         res.send('Admin eliminado')
     },
