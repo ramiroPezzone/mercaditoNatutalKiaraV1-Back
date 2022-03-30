@@ -16,6 +16,11 @@ const controllerAdmins = {
         })
         res.send('Nuevo administrador creado')
     },
+    eliminarAdmin: async (req, res) => {
+        const id = req.params
+        await adminsDB.findByIdAndDelete(id)
+        res.send('Admin eliminado')
+    },
     productos: async (req, res) => {
         const dataProductos = await productosDB.find()
         res.json(dataProductos)

@@ -5,6 +5,7 @@ const upload = require('../multerConfig')
 
 routes.get('/', go.raiz)
 routes.post('/nuevoAdmin', go.crearAdmin)
+routes.delete('/:id', go.eliminarAdmin)
 
 // Rutas productos
 routes.get('/productos', go.productos)
