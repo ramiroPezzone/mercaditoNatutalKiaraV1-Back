@@ -4,12 +4,21 @@ const path = require('path')
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const cloudinary = require('cloudinary')
 const URI = process.env.URI
 let port = process.env.PORT
 if (port == null || port == "") { port = 8080 }
 
 const rutasAdmins = require('./routes/rutasAdmins.js')
 const rutasUsuarios = require('./routes/rutasUsuarios')
+
+// Configuración de Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+})
+// 
 
 // Iniciando cors
 app.use(cors())

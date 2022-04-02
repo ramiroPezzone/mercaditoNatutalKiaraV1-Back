@@ -2,6 +2,7 @@ const productosDB = require('../models/productos')
 const adminsDB = require('../models/admins')
 const categorysDB = require('../models/categorys')
 const fs = require('fs')
+const cloudinary = require('cloudinary')
 
 const controllerAdmins = {
     raiz: async (req, res) => {
@@ -29,15 +30,20 @@ const controllerAdmins = {
         const { name, description, quantity, price, unity, categorys } = req.body
         const image = req.file.filename;
         const categorysAJSON = JSON.parse(categorys)
+        const resultImage = await cloudinary.v2.uploader.upload(req.file.path)
         await productosDB.create({
             name,
             description,
             quantity,
             price,
-            image,
+            image: resultImage.url,
+            public_id: resultImage.public_id,
             unity,
             categorys: categorysAJSON
         })
+        const rutaImagenABorrar = req.file.path;
+        fs.unlink(rutaImagenABorrar, () => { })
+
         res.send('Producto agregado')
     },
     editarProducto: async (req, res) => {
@@ -59,8 +65,8 @@ const controllerAdmins = {
     },
     eliminarUnProducto: async (req, res) => {
         const id = req.params.id
-        const productoBorrado = await productosDB.findByIdAndDelete(id)
-        fs.unlink('public/imgs/' + productoBorrado.image, () => { })
+        const productoEliminado = await productosDB.findByIdAndDelete(id)
+        await cloudinary.v2.uploader.destroy(productoEliminado.public_id)
         res.send('Producto eliminado')
     },
     categorys: async (req, res) => {

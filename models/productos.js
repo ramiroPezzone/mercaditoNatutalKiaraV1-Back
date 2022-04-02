@@ -6,6 +6,7 @@ const schemaProductos = mongoose.Schema({
     quantity: Number,
     price: Number,
     image: String,
+    public_id: String,
     unity: String,
     categorys: Array
 })

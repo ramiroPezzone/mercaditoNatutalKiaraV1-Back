@@ -12,7 +12,7 @@ routes.get('/productos', go.productos)
 routes.post('/productos', upload.single('image'), go.agregarProducto)
 routes.get('/editar/:id', go.editarProducto)
 routes.post('/guardarEdit/:id', go.guardarEdicionProducto)
-routes.delete('/productos/:id', go.eliminarUnProducto)
+routes.get('/productos/:id', go.eliminarUnProducto)
 
 // Rutas categorías
 routes.get('/categorys', go.categorys)
