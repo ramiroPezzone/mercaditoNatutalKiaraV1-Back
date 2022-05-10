@@ -5,8 +5,7 @@ const controllerUsuarios = {
     res.send("Raíz usuarios");
   },
   productos: async (req, res) => {
-    let orderBy = req.params.order;
-    const dataProductos = await productosDB.find().sort(`${orderBy}: 1`);
+    const dataProductos = await productosDB.find().sort("name");
     res.json(dataProductos);
   },
   categorys: async (req, res) => {
